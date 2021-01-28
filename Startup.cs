@@ -39,7 +39,7 @@ namespace ProjectHelper
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProjectHelper", Version = "v1" });
             });
             // For Entity Framework  
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnStr")));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
 
             // For Identity  
             services.AddIdentity<ApplicationUser, IdentityRole>()

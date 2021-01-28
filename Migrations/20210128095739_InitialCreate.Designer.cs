@@ -10,8 +10,8 @@ using ProjectHelper.Authentication;
 namespace ProjectHelper.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210128065801_Initial")]
-    partial class Initial
+    [Migration("20210128095739_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
