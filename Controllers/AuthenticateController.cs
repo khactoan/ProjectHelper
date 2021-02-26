@@ -10,6 +10,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectHelper.Models;
 
 namespace ProjectHelper.Controllers
 {
@@ -61,7 +62,8 @@ namespace ProjectHelper.Controllers
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
+                    expiration = token.ValidTo,
+                    userId = user.Id
                 });
             }
             return Unauthorized();

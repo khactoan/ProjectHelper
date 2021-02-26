@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectHelper.Models;
 
 namespace ProjectHelper.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210129140431_ProjectMember")]
+    partial class ProjectMember
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -215,32 +217,6 @@ namespace ProjectHelper.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("ProjectHelper.Models.DailyReport", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<DateTime>("ReportDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TicketTitle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("DailyReport");
-                });
-
             modelBuilder.Entity("ProjectHelper.Models.Project", b =>
                 {
                     b.Property<int>("Id")
@@ -332,19 +308,10 @@ namespace ProjectHelper.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProjectHelper.Models.DailyReport", b =>
-                {
-                    b.HasOne("ProjectHelper.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("ProjectHelper.Models.ProjectMember", b =>
                 {
                     b.HasOne("ProjectHelper.Models.ApplicationUser", "Member")
-                        .WithMany("ProjectMembers")
+                        .WithMany()
                         .HasForeignKey("MemberId");
 
                     b.HasOne("ProjectHelper.Models.Project", "Project")
@@ -356,11 +323,6 @@ namespace ProjectHelper.Migrations
                     b.Navigation("Member");
 
                     b.Navigation("Project");
-                });
-
-            modelBuilder.Entity("ProjectHelper.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("ProjectMembers");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ProjectHelper.Authentication
+namespace ProjectHelper.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -13,5 +13,9 @@ namespace ProjectHelper.Authentication
         {
             base.OnModelCreating(builder);
         }
+
+        public DbSet<Project> Project { get; set; }
+        public DbSet<ProjectMember> ProjectMember { get; set; }
+        public DbSet<DailyReport> DailyReport { get; set; }
     }
 }
