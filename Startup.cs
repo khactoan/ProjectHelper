@@ -70,10 +70,9 @@ namespace ProjectHelper
                 };
             });
 
-            services.AddCors(options =>
+            services.AddCors(c =>
             {
-                options.AddPolicy("AllowOrigin",
-                    builder => builder.WithOrigins("https://*.projectshelper.azurewebsites.net").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
             });
         }
 
@@ -103,7 +102,7 @@ namespace ProjectHelper
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.UseCors("AllowOrigin");
+            app.UseCors(options => options.AllowAnyOrigin());
         }
     }
 }
